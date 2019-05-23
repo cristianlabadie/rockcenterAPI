@@ -19,7 +19,7 @@ function saveUser(req, res){
     user.name = params.name;
     user.surname = params.surname;
     user.email = params.email;
-    user.role = 'ROLE_ADMIN';
+    user.role = params.role;
     user.image = 'null';
 
     if(params.password){
@@ -108,7 +108,7 @@ function uploadImage(req, res){
   if(req.files){
     var file_path = req.files.image.path;
     var file_ext = path.extname(file_path);
-    var file_name  = path.basename(file_path,file_ext);
+    var file_name  = path.basename(file_path);
     //var file_path = req.files.image.path;
     //var file_split = file_path.split('\\', 2);
     //var file_name = file_split;
@@ -121,7 +121,7 @@ function uploadImage(req, res){
         if(!userUpdated){
           res.status(404).send({message:'No se ha podido actualizar el usuario.'});
         }else{
-          res.status(200).send({user: userUpdated});
+          res.status(200).send({image: file_name,user: userUpdated});
         }
       });
     }else{
