@@ -22,9 +22,6 @@ function getArtist(req, res){
       }
     }
   });
-
-
-
 }
 
 function getArtists(req, res){
